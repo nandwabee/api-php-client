@@ -1,6 +1,6 @@
 <?php
 
-namespace RWAPIClient;
+namespace Reliefweb\Api;
 
 /**
  * ReliefWeb API Client Filter.
@@ -27,21 +27,21 @@ class Filter {
     $this->negate($negate);
   }
 
-  /**
-   * Add a condition to the filter.
-   *
-   * @param string $field
-   *   Field name on ehich to apply the condition.
-   * @param array|scalar $value
-   *   Single value or array of values
-   *   or range array with 'from' and/or 'to' keys.
-   * @param string $operator
-   *   Operator in case of multiple values.
-   * @param boolean $negate
-   *   Indicates if the filter should be inclusive or exclusive (NOT).
-   * @return \RWAPIClient\Filter
-   *   This object.
-   */
+    /**
+     * Add a condition to the filter.
+     *
+     * @param string $field
+     *   Field name on ehich to apply the condition.
+     * @param array $value
+     *   Single value or array of values
+     *   or range array with 'from' and/or 'to' keys.
+     * @param string $operator
+     *   Operator in case of multiple values.
+     * @param boolean $negate
+     *   Indicates if the filter should be inclusive or exclusive (NOT).
+     * @return Filter This object.
+     *   This object.
+     */
   public function condition($field, $value = NULL, $operator = 'AND', $negate = FALSE) {
     $filter = array('field' => $field);
 
@@ -59,40 +59,40 @@ class Filter {
     return $this;
   }
 
-  /**
-   * Add a nested filter contidition.
-   *
-   * @param \RWAPIClient\Filter $filter
-   *   Filter condition.
-   * @return \RWAPIClient\Filter
-   *   This object.
-   */
-  public function filter(\RWAPIClient\Filter $filter) {
+    /**
+     * Add a nested filter contidition.
+     *
+     * @param Filter $filter
+     *   Filter condition.
+     * @return Filter This object.
+     *   This object.
+     */
+  public function filter(Filter $filter) {
     $this->build['conditions'][] = $filter->build();
     return $this;
   }
 
-  /**
-   * Set the operator in case of multiple conditions.
-   *
-   * @param string $operator
-   *   Filter operator.
-   * @return \RWAPIClient\Filter
-   *   This object.
-   */
+    /**
+     * Set the operator in case of multiple conditions.
+     *
+     * @param string $operator
+     *   Filter operator.
+     * @return Filter This object.
+     *   This object.
+     */
   public function operator($operator = 'AND') {
     $this->build['operator'] = $operator;
     return $this;
   }
 
-  /**
-   * Set the negation of the filter.
-   *
-   * @param boolean $negate
-   *   Indicates if the filter should be inclusive or exclusive (NOT).
-   * @return \RWAPIClient\Filter
-   *   This object.
-   */
+    /**
+     * Set the negation of the filter.
+     *
+     * @param boolean $negate
+     *   Indicates if the filter should be inclusive or exclusive (NOT).
+     * @return Filter This object.
+     *   This object.
+     */
   public function negate($negate = FALSE) {
     if (!empty($negate)) {
       $this->build['negate'] = TRUE;

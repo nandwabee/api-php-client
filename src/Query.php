@@ -1,6 +1,6 @@
 <?php
 
-namespace RWAPIClient;
+namespace Reliefweb\Api;
 
 /**
  * ReliefWeb API Client Query builder.
@@ -28,14 +28,14 @@ class Query {
   protected $id;
 
   /**
-   * @var \RWAPIClient\Client
+   * @var \Reliefweb\Api\Client
    */
   protected $client;
 
   /**
    * Build a query for this client.
    *
-   * @param \RWAPIClient\Client $client
+   * @param \Reliefweb\Api\Client $client
    *   ReliefWeb API client.
    */
   public function __construct($resource = '', $client = NULL) {
@@ -43,15 +43,15 @@ class Query {
     $this->client = $client;
   }
 
-  /**
-   * Set or get the client for this query.
-   *
-   * @param \RWAPIClient\Client $client
-   *   ReliefWeb API Client.
-   * @return \RWAPIClient\Client
-   *   ReliefWeb API Client for this query.
-   */
-  public function client(\RWAPIClient\Client $client = NULL) {
+    /**
+     * Set or get the client for this query.
+     *
+     * @param Client $client
+     *   ReliefWeb API Client.
+     * @return null|Client|Query ReliefWeb API Client for this query.
+     *   ReliefWeb API Client for this query.
+     */
+  public function client(Client $client = NULL) {
     if (isset($client)) {
       $this->client = $client;
       return $this;
@@ -75,55 +75,54 @@ class Query {
     return $this->resource;
   }
 
-  /**
-   * Set the id the resource item to return.
-   *
-   * @param integer $id
-   *   Id of the resource item to return.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set the id the resource item to return.
+     *
+     * @param integer $id
+     *   Id of the resource item to return.
+     * @return Query This object.
+     *   This object.
+     */
   public function id($id) {
     $this->id = $id;
     return $this;
   }
 
-  /**
-   * Set the preset for the query.
-   *
-   * @param string $preset
-   *   Query preset.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set the preset for the query.
+     *
+     * @param string $preset
+     *   Query preset.
+     * @return Query This object.
+     *   This object.
+     */
   public function preset($preset) {
     $this->build['preset'] = $preset;
     return $this;
   }
 
-  /**
-   * Set the profile for the query.
-   *
-   * @param string $profile
-   *   Query profile.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set the profile for the query.
+     *
+     * @param string $profile
+     *   Query profile.
+     * @return Query @this
+     */
   public function profile($profile) {
     $this->build['profile'] = $profile;
     return $this;
   }
 
-  /**
-   * Set fields to include or exclude from the results.
-   *
-   * @param array $include
-   *   Fields to include.
-   * @param array $exclude
-   *   Fields to exclude.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set fields to include or exclude from the results.
+     *
+     * @param array $include
+     *   Fields to include.
+     * @param array $exclude
+     *   Fields to exclude.
+     * @return Query This object.
+     *   This object.
+     */
   public function fields($include = array(), $exclude = array()) {
     if (!empty($include)) {
       if (!empty($this->build['fields']['include'])) {
@@ -140,75 +139,75 @@ class Query {
     return $this;
   }
 
-  /**
-   * Add sort options to the query.
-   *
-   * @param string $order
-   *   Field used to order the results.
-   * @param string $direction
-   *   Direction of the ordering (asc or desc).
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Add sort options to the query.
+     *
+     * @param string $order
+     *   Field used to order the results.
+     * @param string $direction
+     *   Direction of the ordering (asc or desc).
+     * @return Query This object.
+     *   This object.
+     */
   public function sort($order, $direction) {
     $this->build['sort'][] = $order . ':' . $direction;
     return $this;
   }
 
-  /**
-   * Set the range of the query.
-   *
-   * @param integer $offset
-   *   Offset from which to start returning items
-   * @param integer $limit
-   *   Maximum number of items to return.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set the range of the query.
+     *
+     * @param integer $offset
+     *   Offset from which to start returning items
+     * @param integer $limit
+     *   Maximum number of items to return.
+     * @return Query This object.
+     *   This object.
+     */
   public function range($offset, $limit) {
     $this->build['limit'] = $offset;
     $this->build['offset'] = $limit;
     return $this;
   }
 
-  /**
-   * Set the offset of the query.
-   *
-   * @param integer $offset
-   *   Offset from which to start returning items
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set the offset of the query.
+     *
+     * @param integer $offset
+     *   Offset from which to start returning items
+     * @return Query This object.
+     *   This object.
+     */
   public function offset($offset) {
     $this->build['offset'] = $offset;
     return $this;
   }
 
-  /**
-   * Set the limit of the query.
-   *
-   * @param integer $limit
-   *   Maximum number of items to return.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set the limit of the query.
+     *
+     * @param integer $limit
+     *   Maximum number of items to return.
+     * @return Query This object.
+     *   This object.
+     */
   public function limit($limit) {
     $this->build['limit'] = $limit;
     return $this;
   }
 
-  /**
-   * Set the search query.
-   *
-   * @param string $search
-   *   Search query.
-   * @param array $fields
-   *   Fields on which to perform the request.
-   * @param string $operator
-   *   Default operator (OR or AND) for the query.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set the search query.
+     *
+     * @param string $search
+     *   Search query.
+     * @param array $fields
+     *   Fields on which to perform the request.
+     * @param string $operator
+     *   Default operator (OR or AND) for the query.
+     * @return Query This object.
+     *   This object.
+     */
   public function search($search, $fields = array(), $operator = '') {
     if (!empty($fields)) {
       $this->build['query']['fields'] = $fields;
@@ -220,41 +219,41 @@ class Query {
     return $this;
   }
 
-  /**
-   * Set thefields for the search query.
-   *
-   * @param array $fields
-   *   Fields on which to perform the request.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
+    /**
+     * Set thefields for the search query.
+     *
+     * @param array $fields
+     *   Fields on which to perform the request.
+     * @return Query This object.
+     *   This object.
+     */
   public function searchFields($fields) {
     $this->build['query']['fields'] = $fields;
     return $this;
   }
 
-  /**
-   * Set the filter for the query.
-   *
-   * @param \RWAPIClient\Filter $filter
-   *   Query filter.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
-  public function filter(\RWAPIClient\Filter $filter) {
+    /**
+     * Set the filter for the query.
+     *
+     * @param Filter $filter
+     *   Query filter.
+     * @return Query This object.
+     *   This object.
+     */
+  public function filter(Filter $filter) {
     $this->build['filter'] = $filter->build();
     return $this;
   }
 
-  /**
-   * Add a facet to return along with the query results.
-   *
-   * @param \RWAPIClient\Facet $facet
-   *   Facet.
-   * @return \RWAPIClient\Query
-   *   This object.
-   */
-  public function facets(\RWAPIClient\Facet $facet) {
+    /**
+     * Add a facet to return along with the query results.
+     *
+     * @param \Reliefweb\Api\Facet $facet
+     *   Facet.
+     * @return Query This object.
+     *   This object.
+     */
+  public function facets(Facet $facet) {
     $this->build['facets'][] = $facet->build();
     return $this;
   }
@@ -278,7 +277,7 @@ class Query {
    *
    * @param boolean $raw
    *   Indicates whether to return the raw data or the wrapped data.
-   * @return \RWAPIClient\Results
+   * @return \Reliefweb\Api\Results|array
    *   Data returned by the API.
    */
   public function execute($raw = FALSE) {
@@ -288,7 +287,8 @@ class Query {
       $method = !empty($this->id) ? 'GET' : 'POST';
       $data = $this->client->query($path, $this->build(), $method);
     }
-    $results = new \RWAPIClient\Results($data);
+    $results = new Results($data);
+
     return $raw ? $results->raw() : $results;
   }
 }

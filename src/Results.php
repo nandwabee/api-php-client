@@ -1,6 +1,6 @@
 <?php
 
-namespace RWAPIClient;
+namespace Reliefweb\Api;
 
 /**
  * ReliefWeb API Client Results.
@@ -84,14 +84,15 @@ class Results {
     return !empty($this->data['embedded']['facets']) ? $this->data['embedded']['facets'] : array();
   }
 
-  /**
-   * Get a facet or facet property.
-   *
-   * @param string $property
-   *   Facet property to return.
-   * @return array
-   *   Facet data.
-   */
+    /**
+     * Get a facet or facet property.
+     *
+     * @param $name
+     * @param string $property
+     *   Facet property to return.
+     * @return array|int
+     *   Facet data.
+     */
   public function facet($name, $property = NULL) {
     $facet = !empty($this->data['embedded']['facets'][$name]) ? $this->data['embedded']['facets'][$name] : array();
 

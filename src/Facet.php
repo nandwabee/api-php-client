@@ -1,6 +1,6 @@
 <?php
 
-namespace RWAPIClient;
+namespace Reliefweb\Api;
 
 /**
  * ReliefWeb API Client Facet.
@@ -35,81 +35,81 @@ class Facet {
     }
   }
 
-  /**
-   * Set the name of the facet.
-   *
-   * @param string $name
-   *   Facet name.
-   * @return \RWAPIClient\Facet
-   *   This object.
-   */
+    /**
+     * Set the name of the facet.
+     *
+     * @param string $name
+     *   Facet name.
+     * @return Facet This object.
+     *   This object.
+     */
   public function name($name) {
     $this->build['name'] = $name;
     return $this;
   }
 
-  /**
-   * Set the field of the facet.
-   *
-   * @param string $field
-   *   Facet field.
-   * @return \RWAPIClient\Facet
-   *   This object.
-   */
+    /**
+     * Set the field of the facet.
+     *
+     * @param string $field
+     *   Facet field.
+     * @return Facet This object.
+     *   This object.
+     */
   public function field($field) {
     $this->build['field'] = $field;
     return $this;
   }
 
-  /**
-   * Set the limit of the facet.
-   *
-   * @param string $limit
-   *   Facet limit.
-   * @return \RWAPIClient\Facet
-   *   This object.
-   */
+    /**
+     * Set the limit of the facet.
+     *
+     * @param string $limit
+     *   Facet limit.
+     * @return Facet This object.
+     *   This object.
+     */
   public function limit($limit) {
     $this->build['limit'] = $limit;
     return $this;
   }
 
-  /**
-   * Set the sort option of the facet.
-   *
-   * @param string $order
-   *   Order type (value or count).
-   * @param string $direction
-   *   Direction of the ordering (asc or desc).
-   * @return \RWAPIClient\Facet
-   *   This object.
-   */
+    /**
+     * Set the sort option of the facet.
+     *
+     * @param string $order
+     *   Order type (value or count).
+     * @param string $direction
+     *   Direction of the ordering (asc or desc).
+     * @return Facet This object.
+     *   This object.
+     */
   public function sort($order, $direction) {
     $this->build['sort'] = $order . ':' . $direction;
     return $this;
   }
 
-  /**
-   * Set the facet filter.
-   *
-   * @param \RWAPIClient\Filter $filter
-   *   Facet filter.
-   * @return \RWAPIClient\Facet
-   *   This object.
-   */
-  public function filter(\RWAPIClient\Filter $filter) {
+    /**
+     * Set the facet filter.
+     *
+     * @param Filter $filter
+     *   Facet filter.
+     * @return Facet This object.
+     *   This object.
+     */
+  public function filter(Filter $filter) {
     $this->build['filter'] = $filter->build();
     return $this;
   }
 
-  /**
-   * Set the facet scope.
-   *
-   * @param string $scope
-   *   Facet scope.
-   * @return \RWAPIClient\Facet
-   *   This object.
-   */
+    /**
+     * Set the facet scope.
+     *
+     * @param string $scope
+     *   Facet scope.
+     * @return Facet This object.
+     *   This object.
+     */
   public function scope($scope) {
     $this->build['scope'] = $scope;
     return $this;

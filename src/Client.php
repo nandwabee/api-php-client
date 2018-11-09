@@ -1,6 +1,6 @@
 <?php
 
-namespace RWAPIClient;
+namespace Reliefweb\Api;
 
 /**
  * ReliefWeb API Client.
@@ -30,14 +30,17 @@ class Client {
     $this->url = $url;
   }
 
-  /**
-   * Set the name of the application or website using the API.
-   *
-   * @param string $appname
-   *   Application name.
-   */
+    /**
+     * Set the name of the application or website using the API.
+     *
+     * @param string $appname
+     *   Application name.
+     *
+     * @return Client
+     */
   public function appname($appname = "") {
     $this->appname = $appname;
+
     return $this;
   }
 
@@ -48,7 +51,7 @@ class Client {
    *
    * @param string $resource
    *   Resource name.
-   * @param \RWAPIClient\Query|array $data
+   * @param \Reliefweb\Api\Query|array $data
    *   Data to pass to the API.
    * @param integer $method
    *   POST or GET method.
@@ -63,7 +66,7 @@ class Client {
     // Set the appname parameter.
     $url .= '?appname=' . (!empty($this->appname) ? urlencode($this->appname) : 'rw-api-php-client');
 
-    if ($data instanceof \RWAPIClient\Query) {
+    if ($data instanceof Query) {
       $data = $data->build();
     }
 
@@ -106,7 +109,7 @@ class Client {
   /**
    * Shortcut to query reports.
    *
-   * @param \RWAPIClient\Query|array $data
+   * @param \Reliefweb\Api\Query|array $data
    *   Data to pass to the API.
    * @return array
    *   Data received by the API.
@@ -118,7 +121,7 @@ class Client {
   /**
    * Shortcut to query jobs.
    *
-   * @param \RWAPIClient\Query|array $data
+   * @param \Reliefweb\Api\Query|array $data
    *   Data to pass to the API.
    * @return array
    *   Data received by the API.
@@ -130,7 +133,7 @@ class Client {
   /**
    * Shortcut to query training.
    *
-   * @param \RWAPIClient\Query|array $data
+   * @param \Reliefweb\Api\Query|array $data
    *   Data to pass to the API.
    * @return array
    *   Data received by the API.
@@ -142,7 +145,7 @@ class Client {
   /**
    * Shortcut to query sources.
    *
-   * @param \RWAPIClient\Query|array $data
+   * @param \Reliefweb\Api\Query|array $data
    *   Data to pass to the API.
    * @return array
    *   Data received by the API.
@@ -154,7 +157,7 @@ class Client {
   /**
    * Shortcut to query countries.
    *
-   * @param \RWAPIClient\Query|array $data
+   * @param \Reliefweb\Api\Query|array $data
    *   Data to pass to the API.
    * @return array
    *   Data received by the API.
@@ -166,7 +169,7 @@ class Client {
   /**
    * Shortcut to query disasters.
    *
-   * @param \RWAPIClient\Query|array $data
+   * @param \Reliefweb\Api\Query|array $data
    *   Data to pass to the API.
    * @return array
    *   Data received by the API.
